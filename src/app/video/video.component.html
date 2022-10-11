@@ -1,0 +1,28 @@
+<div style="margin:auto;">
+
+  
+  <mat-button-toggle-group name="currentStream" aria-label="Current Stream" class="chooser">
+    <mat-button-toggle value="eagles" (click)="eagles()">Eagles</mat-button-toggle>
+    <mat-button-toggle value="phillies" (click)="phillies();">Phillies</mat-button-toggle>
+    <mat-button-toggle value="redzone" (click)="redzone();">RedZone</mat-button-toggle>
+    <mat-button-toggle value="extra" (click)="extra();">Extra</mat-button-toggle>
+  </mat-button-toggle-group>
+
+
+  <div class="row">
+    <div class="column">
+      <div class="api-container">
+        <video [id]="this.streamid" style="width: 100%; height: 100%" class="video-js" controls="controls" controlslist="nodownload"></video>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="api-container">
+        <app-eaglesapi *ngIf="isEagles"></app-eaglesapi> 
+        <app-philliesapi *ngIf="isPhillies"></app-philliesapi> 
+      </div>
+    </div>
+
+  </div>
+
+</div>

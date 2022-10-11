@@ -1,0 +1,34 @@
+
+<mat-tab-group>
+
+    <mat-tab label="Team Stats"> 
+        <mat-list>
+
+            <mat-list-item>Record: {{phillies.team.record.items[0].summary}}</mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>Standing: {{phillies.team.standingSummary}}</mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item *ngFor="let link of phillies.team.links" [hidden]="link.shortText == 'photos'">
+
+              <mat-icon class="link-icon">open_in_new</mat-icon><a class="link" (click)="open(link.href, link.shortText, 1060, 720)">{{link.shortText}}</a>
+
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+          
+          </mat-list>
+      
+      
+    </mat-tab>
+
+    <mat-tab label="Event Stats"> 
+      Still need to pick out what to display from the API req
+    </mat-tab>
+
+  </mat-tab-group>
+
+  

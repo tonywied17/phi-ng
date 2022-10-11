@@ -1,0 +1,57 @@
+#resizer,
+footer {
+  background-color: #ECEEF1;
+  color: #868688;
+  padding: 3px 10px;
+}
+
+.footer-text {
+  padding: 3px;
+  display: block; 
+}
+
+footer .copyright {
+  float: left;
+}
+
+footer .other-links {
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+footer .other-links li {
+  display: inline;
+}
+
+footer .logo {
+  display: none;
+}
+
+
+.api-container{
+  padding:1em;
+}
+
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 0;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 900px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.chooser{
+  margin:1em;
+}
