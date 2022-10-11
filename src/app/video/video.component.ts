@@ -27,7 +27,8 @@ export class VideoComponent implements AfterViewInit {
    * GET PHILLIES STREAM PAGE
    */
   phillies(){
-    this.streamid="phillies";
+
+    this.streamid="phillies" + this.rando();
     this.isStreaming=true;
     this.isEagles=false;
     this.isPhillies=true;
@@ -35,7 +36,7 @@ export class VideoComponent implements AfterViewInit {
     setTimeout(() => {
       this.url = 'https://hoagie.memesyndicate.to/b10.m3u8'
 
-      this.player = videojs('phillies', {
+      this.player = videojs(this.streamid, {
         aspectRatio: '4:3',
         controls: true,
         autoplay: true,
@@ -64,7 +65,7 @@ export class VideoComponent implements AfterViewInit {
    */
 eagles(){
 
-  this.streamid="eagles";
+  this.streamid="eagles" + this.rando();;
   this.isStreaming=true;
   this.isEagles=true;
   this.isPhillies=false;
@@ -72,7 +73,7 @@ eagles(){
   setTimeout(() => {
     this.url = 'https://view.memesyndicate.to/espn_no_g.m3u8'
 
-  this.player = videojs('eagles', {
+  this.player = videojs(this.streamid, {
     aspectRatio: '4:3',
     controls: true,
     autoplay: true,
@@ -117,6 +118,15 @@ extra(){
     this.isStreaming=true;
   }
 
+  /**
+   * RANDOM NUMBER GENERATOR
+   * Used for concating a random 5 digit number on the end of a stream id instance.
+   * 
+   * @returns a random 5 digit number
+   */
+  rando(){
+    return Math.floor(Math.random() * 100000);
+  }
 
   
 }
