@@ -3,16 +3,17 @@
 
     <mat-tab label="Team Stats"> 
         <mat-list>
-
-            <mat-list-item>Record: {{phillies.team.record.items[0].summary}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <mat-list-item>Standing: {{phillies.team.standingSummary}}</mat-list-item>
+          <mat-list-item>{{phillies.competitions[0].series.summary}}</mat-list-item>
+          <mat-divider></mat-divider>
+            <mat-list-item>Regular Season: {{phillies.team.record.items[0].summary}}</mat-list-item>
 
             <mat-divider></mat-divider>
 
-            <mat-list-item *ngFor="let link of phillies.team.links" [hidden]="link.shortText == 'photos'">
+            <mat-list-item>Division: {{phillies.team.standingSummary}}</mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item *ngFor="let link of phillies.team.links" [hidden]="link.shortText == 'photos' || link.shortText == 'Clubhouse' || link.shortText == 'Scores'">
 
               <mat-icon class="link-icon">open_in_new</mat-icon><a class="link" (click)="open(link.href, link.shortText, 1060, 720)">{{link.shortText}}</a>
 
@@ -26,7 +27,15 @@
     </mat-tab>
 
     <mat-tab label="Event Stats"> 
-      Still need to pick out what to display from the API req
+      <mat-list>
+        <mat-list-item>{{phillies.competitions[0].notes[0].headline}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>[{{phillies.competitions[0].status.type.shortDetail}}] {{phillies.competitions[0].competitors[1].team.abbreviation + ": " + phillies.competitions[0].competitors[1].score + " @ " + phillies.competitions[0].competitors[0].team.abbreviation + ": " + phillies.competitions[0].competitors[0].score}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Venue: {{phillies.competitions[0].venue.fullName}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Attendance/Capacity: {{phillies.competitions[0].attendance + "/" + phillies.competitions[0].venue.capacity}}</mat-list-item>
+      </mat-list>
     </mat-tab>
 
   </mat-tab-group>

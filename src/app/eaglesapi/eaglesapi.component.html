@@ -5,10 +5,10 @@
         <mat-list>
             <mat-list-item>Record: {{eagles.team.record.items[0].summary}}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>Standing: {{eagles.team.standingSummary}}</mat-list-item>
+            <mat-list-item>Division: {{eagles.team.standingSummary}}</mat-list-item>
             <mat-divider></mat-divider>
 
-            <mat-list-item *ngFor="let link of eagles.team.links" [hidden]="link.shortText == 'photos'">
+            <mat-list-item *ngFor="let link of eagles.team.links" [hidden]="link.shortText == 'photos' || link.shortText == 'Clubhouse' || link.shortText == 'Draft Picks' || link.shortText == 'Scores'">
 
               <mat-icon class="link-icon">open_in_new</mat-icon><a class="link" (click)="open(link.href, link.shortText, 1060, 720)">{{link.shortText}}</a>
 
@@ -22,7 +22,13 @@
     </mat-tab>
 
     <mat-tab label="Event Stats"> 
-      Still need to pick out what to display from the API req
+      <mat-list>
+        <mat-list-item>[{{eagles.competitions[0].status.type.shortDetail}}] {{eagles.competitions[0].competitors[1].team.abbreviation + ": " + eagles.competitions[0].competitors[1].score + " @ " + eagles.competitions[0].competitors[0].team.abbreviation + ": " + eagles.competitions[0].competitors[0].score}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Venue: {{eagles.competitions[0].venue.fullName}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Attendance/Capacity: {{eagles.competitions[0].attendance + "/" + eagles.competitions[0].venue.capacity}}</mat-list-item>
+      </mat-list>
     </mat-tab>
 
   </mat-tab-group>
