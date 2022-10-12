@@ -27,7 +27,7 @@ export class VideoComponent implements AfterViewInit {
  */
   async links(type: String){
 
-    let resp = await fetch('https://molex.cloud/phi/links.json?' + this.rando());
+    let resp = await fetch('links.json?' + this.rando());
 
     if(resp.ok){
       let streams = await resp.json();
