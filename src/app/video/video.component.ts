@@ -9,7 +9,7 @@ import videojs from 'video.js';
 })
 
 export class VideoComponent implements AfterViewInit {
-  url: string = "";
+  url: any;
   streamid: string = "none";
   isStreaming:boolean =  false;
 
@@ -22,7 +22,27 @@ export class VideoComponent implements AfterViewInit {
 
   }
 
+  /**
+ * 
+ */
+  async links(type: String){
 
+    let resp = await fetch('https://molex.cloud/phi/links.json');
+
+    if(resp.ok){
+      let streams = await resp.json();
+
+      if(type == "phillies"){
+        console.log(streams.streams.phillies)
+        return streams.streams.phillies
+      }
+
+      if(type == "eagles"){
+        console.log(streams.streams.eagles)
+        return streams.streams.eagles
+      }
+    }
+  }
   /**
    * GET PHILLIES STREAM PAGE
    */
@@ -33,8 +53,9 @@ export class VideoComponent implements AfterViewInit {
     this.isEagles=false;
     this.isPhillies=true;
 
-    setTimeout(() => {
-      this.url = 'https://hoagie.memesyndicate.to/b10.m3u8'
+    setTimeout(async () => {
+      console.log(this.links("phillies"))
+      this.url = await this.links("phillies");
 
       this.player = videojs(this.streamid, {
         aspectRatio: '4:3',
@@ -70,8 +91,9 @@ eagles(){
   this.isEagles=true;
   this.isPhillies=false;
 
-  setTimeout(() => {
-    this.url = 'https://view.memesyndicate.to/espn_no_g.m3u8'
+  setTimeout(async () => {
+    console.log(this.links("eagles"))
+    this.url = await this.links("eagles");
 
   this.player = videojs(this.streamid, {
     aspectRatio: '4:3',
