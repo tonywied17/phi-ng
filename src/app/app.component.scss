@@ -5,7 +5,7 @@
 .nav{
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
-    opacity:0.8;
+    user-select: none;
 }
 
 #main-container{
@@ -24,19 +24,14 @@
     }
   }
 
-  footer{
-    background: #1a3243;
-    border-bottom-left-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
+  .app-container{
+    min-height: 69vh;
     padding:1.3em;
-    opacity:0.8;
-    font-size:0.9rem;
-    text-align: right;
   }
 
-  .info{
-    background: rgba(112, 128, 144, 0.699);
-    max-height:45px;
-    overflow-x: hidden;
-    overflow-y: hidden;
+  @media only screen and (max-width: 768px) {
+    .app-container{
+      min-height: calc(100vh - 105px);
+      padding: unset !important;
+    }
   }

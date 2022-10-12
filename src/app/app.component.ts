@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'molexee';
+  bodyTag = document.body;
+
+
+  mainTheme(){
+      this.bodyTag.classList.remove(this.bodyTag.classList.toString())
+      this.bodyTag.classList.add("main");
+  }
 }

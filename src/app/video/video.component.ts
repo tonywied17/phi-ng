@@ -17,7 +17,8 @@ export class VideoComponent implements AfterViewInit {
   isPhillies!:boolean;
 
   player!: videojs.Player;
-
+  bodyTag = document.body;
+  
   ngAfterViewInit() {
 
   }
@@ -47,7 +48,6 @@ export class VideoComponent implements AfterViewInit {
    * GET PHILLIES STREAM PAGE
    */
   phillies(){
-
     this.streamid="phillies" + this.rando();
     this.isStreaming=true;
     this.isEagles=false;
@@ -85,7 +85,7 @@ export class VideoComponent implements AfterViewInit {
    * GET EAGLES STREAM PAGE
    */
 eagles(){
-
+  
   this.streamid="eagles" + this.rando();;
   this.isStreaming=true;
   this.isEagles=true;
@@ -132,6 +132,16 @@ redzone(){
  */
 extra(){
 
+}
+
+theme(theme: any){
+  if(theme){
+    this.bodyTag.classList.remove(this.bodyTag.classList.toString())
+    this.bodyTag.classList.add("theme-" + theme);
+  }else{
+    this.bodyTag.classList.remove(this.bodyTag.classList.toString())
+    this.bodyTag.classList.add("main");
+  }
 }
 
   stop(){

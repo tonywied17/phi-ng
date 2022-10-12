@@ -4,15 +4,23 @@
     transition: all .2s ease;
     animation: load-news 200ms ease 0s 1 normal forwards;
     margin: 10px;
+    
   }
 
   .news-card:hover{
-    opacity: 0.5;
+    filter: drop-shadow(5px 2px 4px rgba(0, 0, 0, 0.41));
+  }
+
+  .news-card:active{
+    filter: brightness(130%);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
   }
   
   .news-header-image {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/857/857455.png');
+    background-image: url('https://molex.cloud/2022/October/12/_9Wm/download.png');
     background-size: cover;
+
   }
 /*
   .column {

@@ -143,11 +143,44 @@ $mat-dark-theme-background: (
   disabled-list-option:     $dark-bg-lighter-10,
 );
 
+
+// Dark bg eagles
+$dark-background-eagles:     #1b1b1b;
+$dark-bg-lighter-5-eagles:   lighten($dark-background-eagles, 5%);
+$dark-bg-lighter-10-eagles:  lighten($dark-background-eagles, 10%);
+$dark-bg-lighter-20-eagles:  lighten($dark-background-eagles, 20%);
+$dark-bg-lighter-30-eagles:  lighten($dark-background-eagles, 30%);
+$light-bg-alpha-4-eagles:    rgba(#fafafa, 0.04);
+$light-bg-alpha-12-eagles:   rgba(#fafafa, 0.12);
+
+// Background palette for dark themes.
+$mat-eagles-theme-background: (
+  background:               $dark-background-eagles,
+  status-bar:               $dark-bg-lighter-20-eagles,
+  app-bar:                  $dark-bg-lighter-5-eagles,
+  hover:                    $light-bg-alpha-4-eagles,
+  card:                     $dark-bg-lighter-5-eagles,
+  dialog:                   $dark-bg-lighter-5-eagles,
+  tooltip:                  $dark-bg-lighter-20-eagles,
+  disabled-button:          $light-bg-alpha-12-eagles,
+  raised-button:            $dark-bg-lighter-5-eagles,
+  focused-button:           $light-focused,
+  selected-button:          $dark-bg-lighter-20-eagles,
+  selected-disabled-button: $dark-bg-lighter-30-eagles,
+  disabled-button-toggle:   $dark-bg-lighter-10-eagles,
+  unselected-chip:          $dark-bg-lighter-20-eagles,
+  disabled-list-option:     $dark-bg-lighter-10-eagles,
+);
+
+
 // Compute font config
 @include mat.core($fontConfig);
 
 // Theme Config
 
+/**
+PRIMARY THEMES
+*/
 body {
   --primary-color: #1a3243;
   --primary-lighter-color: #bac2c7;
@@ -169,7 +202,55 @@ $mat-primary: (
 );
 $theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
 
+//Eagles Primary
+body {
+  --primary-color: #046a38;
+  --primary-lighter-color: #b4d2c3;
+  --primary-darker-color: #024d24;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}   
+$mat-primary: (
+  main: #046a38,
+  lighter: #b4d2c3,
+  darker: #024d24,
+  200: #046a38, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-primary-eagles: mat.define-palette($mat-primary, main, lighter, darker);
 
+//Phillies Primary
+body {
+  --primary-color: #c81e3b;
+  --primary-lighter-color: #efbcc4;
+  --primary-darker-color: #b41226;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}   
+$mat-primary: (
+  main: #c81e3b,
+  lighter: #efbcc4,
+  darker: #b41226,
+  200: #c81e3b, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-primary-phillies: mat.define-palette($mat-primary, main, lighter, darker);
+
+
+
+/**
+ACCENT THEMES
+*/
 body {
   --accent-color: #797979;
   --accent-lighter-color: #d7d7d7;
@@ -190,6 +271,51 @@ $mat-accent: (
   )
 );
 $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+
+//Eagles Theme
+body {
+  --accent-color: #046a38;
+  --accent-lighter-color: #b4d2c3;
+  --accent-darker-color: #024d24;
+  --text-accent-color: #{$light-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
+}   
+$mat-accent: (
+  main: #046a38,
+  lighter: #b4d2c3,
+  darker: #024d24,
+  200: #046a38, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-accent-eagles: mat.define-palette($mat-accent, main, lighter, darker);
+
+
+//Phillies Theme
+body {
+  --accent-color: #013b73;
+  --accent-lighter-color: #b3c4d5;
+  --accent-darker-color: #012656;
+  --text-accent-color: #{$light-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
+}   
+$mat-accent: (
+  main: #013b73,
+  lighter: #b3c4d5,
+  darker: #012656,
+  200: #013b73, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+$theme-accent-phillies: mat.define-palette($mat-accent, main, lighter, darker);
 
 
 body {
@@ -212,7 +338,7 @@ $mat-warn: (
   )
 );
 $theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
-;
+
 
 $theme: (
   primary: $theme-primary,
@@ -230,12 +356,49 @@ $altTheme: (
   foreground: $mat-light-theme-foreground,
   background: $mat-light-theme-background,
 );
+$eaglesTheme: (
+  primary: $theme-primary-eagles,
+  accent: $theme-accent-eagles,
+  warn: $theme-warn,
+  is-dark: true,
+  foreground: $mat-dark-theme-foreground,
+  background: $mat-eagles-theme-background,
+);
+$philliesTheme: (
+  primary: $theme-primary-phillies,
+  accent: $theme-accent-phillies,
+  warn: $theme-warn,
+  is-dark: true,
+  foreground: $mat-dark-theme-foreground,
+  background: $mat-eagles-theme-background,
+);
 
 // Theme Init
 @include mat.all-component-themes($theme);
 
+.main{
+  @include mat.all-component-themes($theme);
+  --footer-color: #1a3243;
+  --info-color: rgba(112, 128, 144, 0.699);
+  --link-color: #19ff53;
+}
+
 .theme-alternate {
   @include mat.all-component-themes($altTheme);
+}
+
+.theme-eagles {
+  @include mat.all-component-themes($eaglesTheme);
+  --footer-color: #046a38;
+  --info-color: #8A8D8F;
+  --link-color: #046a38;
+}
+
+.theme-phillies {
+  @include mat.all-component-themes($philliesTheme);
+  --footer-color: #c81e3b;
+  --info-color: #013b73;
+  --link-color: #0d569b;
 }
 
 // Specific component overrides, pieces that are not in line with the general theming
@@ -246,7 +409,8 @@ $altTheme: (
 }
 body{
   font-family: 'Roboto';
-  background: #111a20;
+  background: rgb(14, 14, 14);
+  -webkit-tap-highlight-color: transparent;
 }
 .mat-raised-button, .mat-stroked-button, .mat-flat-button {
   padding: 0 1.15em;
@@ -274,4 +438,83 @@ body{
 
 .mat-tab-body-content {
   overflow: hidden !important;
+}
+
+
+footer{
+  background: var(--footer-color);
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  padding:1.3em;
+  opacity:0.8;
+  font-size:0.9rem;
+  text-align: right;
+}
+
+
+.info{
+  background: var(--info-color);
+  max-height:45px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.link{
+  cursor: pointer;
+  color: var(--link-color);
+  border-bottom: dotted var(--link-color) 1px;
+  transition: all .2s ease;
+}
+
+.link:hover{
+  opacity: 0.7;
+}
+
+.link:active{
+  color: var(--link-color);
+}
+
+.link-icon{
+  font-size: 1rem;
+  margin-bottom: -9px;
+  color: gray;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4d4c4c;
+  border-radius: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #90908f;
+  border-radius: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #717171;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .app-container{
+    min-height: 69vh;
+    padding: unset !important;
+  }
+  body{
+    margin: 0;
+  }
+  .nav{
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    top: 0 !important;
+    position: sticky !important;
+    z-index: 2;
+  }
+  footer{
+    display: none;
+  }
 }
