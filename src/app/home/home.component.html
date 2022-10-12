@@ -1,22 +1,25 @@
-<h1>Welcome friends!</h1>
 
-<mat-card class="example-card">
+<div class="row">
+
+<div class="column" *ngFor="let article of allNews.articles">
+  <mat-card class="news-card" (click)="open(article.links.web.href, article.type, 1500, 1000)">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>molex.</mat-card-title>
-      <mat-card-subtitle>The Lizard King</mat-card-subtitle>
+      <div mat-card-avatar class="news-header-image"></div>
+      <mat-card-title>{{article.headline}}</mat-card-title>
+      <mat-card-subtitle>ESPN</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://media.istockphoto.com/photos/retro-television-and-wallpaper-picture-id502584453?k=20&m=502584453&s=612x612&w=0&h=cOQIDQlA1Hx3hbI2uDFnYjdmvYJUoRkeqkpO5pWWP2g=" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="{{article.images[0].url}}" alt="{{article.images[0].name}}">
     <mat-card-content>
       <p>
-        Big networks like ABC, CBS, FOX and NBC have local affiliates that are region-specific. These local networks air plenty of live games from pro leagues like the NFL, NBA, MLB, and NHL. You can also find a good amount of college games on local networks. 
+        {{article.description}}
       </p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button [routerLink]="'/video'">WATCH SPORTS NOW</button>
-    </mat-card-actions>
     <mat-card-footer>
         <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-card-footer>
   </mat-card>
-  
+</div>
+
+
+
+</div>

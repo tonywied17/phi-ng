@@ -1,8 +1,62 @@
-.example-card {
-    max-width: 400px;
+.news-card {
+    width: auto;
+    cursor: pointer;
+    transition: all .2s ease;
+    animation: load-news 200ms ease 0s 1 normal forwards;
+    margin: 10px;
+  }
+
+  .news-card:hover{
+    opacity: 0.5;
   }
   
-  .example-header-image {
-    background-image: url('https://ballparkdigest.com/wp-content/uploads/2019/06/Jawn-logo-e1560367738238.png');
+  .news-header-image {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/857/857455.png');
     background-size: cover;
+  }
+/*
+  .column {
+    float: left;
+    padding: 0;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  @media screen and (max-width: 900px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+*/
+  .row {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 5px;
+  }
+
+  .column {
+    padding: 5px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 5px;
+    }
+  }
+
+  @keyframes load-news {
+    0% {
+      transform: scale(0);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
   }
