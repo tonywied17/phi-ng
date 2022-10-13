@@ -2,10 +2,10 @@
 
   
   <mat-button-toggle-group name="currentStream" aria-label="Current Stream" class="chooser">
-    <mat-button-toggle value="eagles" (click)="eagles();theme('eagles')">Eagles</mat-button-toggle>
-    <mat-button-toggle value="phillies" (click)="phillies();theme('phillies')">Phillies</mat-button-toggle>
+    <mat-button-toggle value="eagles" (click)="streamSelector('eagles');theme('eagles')">Eagles</mat-button-toggle>
+    <mat-button-toggle value="phillies" (click)="streamSelector('phillies');theme('phillies')">Phillies</mat-button-toggle>
     <!---<mat-button-toggle value="redzone" (click)="redzone();">RedZone</mat-button-toggle>--->
-    <mat-button-toggle value="extra" (click)="extra();" [disabled]="true">Extra 1</mat-button-toggle>
+    <mat-button-toggle value="extra" [disabled]="true">Extra 1</mat-button-toggle>
   </mat-button-toggle-group>
 
 

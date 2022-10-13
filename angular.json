@@ -35,7 +35,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/video.js"
+              "src/assets/video.js",
+              "src/assets/videojs-chromecast.js"
             ]
           },
           "configurations": {

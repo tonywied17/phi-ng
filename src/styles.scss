@@ -93,9 +93,9 @@ $light-bg-darker-10:  darken($light-background, 10%);
 $light-bg-darker-20:  darken($light-background, 20%);
 $light-bg-darker-30:  darken($light-background, 30%);
 $light-bg-lighter-5:  lighten($light-background, 5%);
-$dark-bg-tooltip:     lighten(#17232b, 20%);
-$dark-bg-alpha-4:     rgba(#17232b, 0.04);
-$dark-bg-alpha-12:    rgba(#17232b, 0.12);
+$dark-bg-tooltip:     lighten( #181818db, 20%);
+$dark-bg-alpha-4:     rgba( #181818db, 0.04);
+$dark-bg-alpha-12:    rgba( #181818db, 0.12);
 
 $mat-light-theme-background: (
   background:               $light-background,
@@ -116,7 +116,7 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background:     #17232b;
+$dark-background:      #181818db;
 $dark-bg-lighter-5:   lighten($dark-background, 5%);
 $dark-bg-lighter-10:  lighten($dark-background, 10%);
 $dark-bg-lighter-20:  lighten($dark-background, 20%);
@@ -182,7 +182,7 @@ $mat-eagles-theme-background: (
 PRIMARY THEMES
 */
 body {
-  --primary-color: #1a3243;
+  --primary-color: #1f2325;
   --primary-lighter-color: #bac2c7;
   --primary-darker-color: #0f1f2c;
   --text-primary-color: #{$light-primary-text};
@@ -190,10 +190,10 @@ body {
   --text-primary-darker-color: #{$light-primary-text};
 }   
 $mat-primary: (
-  main: #1a3243,
+  main: #1f2325,
   lighter: #bac2c7,
   darker: #0f1f2c,
-  200: #1a3243, // For slide toggle,
+  200: #1f2325, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -378,8 +378,8 @@ $philliesTheme: (
 
 .main{
   @include mat.all-component-themes($theme);
-  --footer-color: #1a3243;
-  --info-color: rgba(112, 128, 144, 0.699);
+  --footer-color: #1f2325;
+  --info-color: rgba(79, 90, 102, 0.808);
   --link-color: #19ff53;
 }
 
