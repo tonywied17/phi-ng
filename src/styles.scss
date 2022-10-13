@@ -362,7 +362,7 @@ $eaglesTheme: (
   warn: $theme-warn,
   is-dark: true,
   foreground: $mat-dark-theme-foreground,
-  background: $mat-eagles-theme-background,
+  background: $mat-dark-theme-background,
 );
 $philliesTheme: (
   primary: $theme-primary-phillies,
@@ -370,7 +370,7 @@ $philliesTheme: (
   warn: $theme-warn,
   is-dark: true,
   foreground: $mat-dark-theme-foreground,
-  background: $mat-eagles-theme-background,
+  background: $mat-dark-theme-background,
 );
 
 // Theme Init
