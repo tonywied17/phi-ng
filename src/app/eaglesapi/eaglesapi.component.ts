@@ -14,6 +14,7 @@ export class EaglesapiComponent implements OnInit {
   teamApi: any;
   scoreApi: any;
   eventApi: any
+  birdsApi = false
 
   constructor() { }
 
@@ -33,6 +34,7 @@ export class EaglesapiComponent implements OnInit {
     if(resp.ok){
       this.teamApi = await resp.json();
     }
+
   }
 
 
@@ -63,6 +65,12 @@ export class EaglesapiComponent implements OnInit {
 
     await this.getEaglesTeamApi();
     await this.getEaglesScoreApi();
+
+    if(!this.teamApi || !this.eventApi){
+      this.birdsApi = false
+    }else{
+      this.birdsApi = true
+    }
 
         this.eagles = {
           ...this.teamApi,

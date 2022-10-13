@@ -1,5 +1,10 @@
 
-<mat-tab-group>
+<mat-card style="border-left: 4px solid #454f59;margin:1em;" *ngIf="!philsApi">
+  <mat-icon style="font-size:1.2rem;margin-bottom:-8px;">info</mat-icon> There are no events scheduled for today<p>Next scheduled event is for {{phillies.team.nextEvent[0].competitions[0].status.type.detail}}</p>
+</mat-card>
+
+
+<mat-tab-group *ngIf="philsApi">
 
     <mat-tab label="Team Stats"> 
         <mat-list>

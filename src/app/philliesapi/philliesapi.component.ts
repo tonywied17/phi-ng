@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhilliesapiComponent implements OnInit {
 
-/**
-   * Variables and Properties
-   */
- phillies: any;
- teamApi: any;
- scoreApi: any;
- eventApi: any
+  /**
+     * Variables and Properties
+     */
+  phillies: any;
+  teamApi: any;
+  scoreApi: any;
+  eventApi: any
+  philsApi = false
 
   constructor() { }
 
@@ -26,26 +27,27 @@ export class PhilliesapiComponent implements OnInit {
    * API GET REQUEST FROM ESPN FOR TEAM
    * Store that repsonse in the teamApi object.
    */
-   async getphilliesTeamApi(){
+  async getphilliesTeamApi() {
     let resp = await fetch('https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/22');
 
-    if(resp.ok){
+    if (resp.ok) {
       this.teamApi = await resp.json();
     }
   }
 
 
-   /**
-   * API GET REQUEST FROM ESPN FOR SCORES
-   * Filter only the event entry that contains PHI in the matchup then store that in the eventApi object
-   */
-  async getphilliesScoreApi(){
+  /**
+  * API GET REQUEST FROM ESPN FOR SCORES
+  * Filter only the event entry that contains PHI in the matchup then store that in the eventApi object
+  */
+  async getphilliesScoreApi() {
     let resp = await fetch('https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard');
 
-    if(resp.ok){
+    if (resp.ok) {
       this.scoreApi = await resp.json();
+      
       this.scoreApi.events.forEach((game: any) => {
-        if(game.shortName.includes("PHI")){
+        if (game.shortName.includes("PHI")) {
           console.log(game)
           this.eventApi = game;
         }
@@ -58,27 +60,33 @@ export class PhilliesapiComponent implements OnInit {
    * MERGE API REQUEST OBJECTS
    * You take the jawn on the left and the jawn on the right and make them all tight, hell yeah sheeeeeeeeeeesh
    */
-  async mergephilliesApi(){
+  async mergephilliesApi() {
 
     await this.getphilliesTeamApi();
     await this.getphilliesScoreApi();
 
-        this.phillies = {
-          ...this.teamApi,
-          ...this.eventApi
-        };
+    if(!this.teamApi || !this.eventApi){
+      this.philsApi = false
+    }else{
+      this.philsApi = true
+    }
+
+    this.phillies = {
+      ...this.teamApi,
+      ...this.eventApi
+    };
 
     console.log(JSON.stringify(this.phillies))
   }
 
-/**
- * OPEN ESPN TEAM LINKS IN NEW POPUP
- * @param url 
- */
-  open(url: any, title: any, w: any, h: any){
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+  /**
+   * OPEN ESPN TEAM LINKS IN NEW POPUP
+   * @param url 
+   */
+  open(url: any, title: any, w: any, h: any) {
+    var left = (screen.width / 2) - (w / 2);
+    var top = (screen.height / 2) - (h / 2);
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
   }
 
 }
