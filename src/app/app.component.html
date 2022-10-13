@@ -9,7 +9,7 @@
       <div class="top-nav-btns">
         <a mat-button [routerLink]="'/home'" style="margin-right:0.3em;" (click)="mainTheme()"> <mat-icon style="margin-right: 2px;font-size:1.1rem;margin-bottom: -6px;">home</mat-icon> Home </a>
         <a mat-button [routerLink]="'/video'" style="margin-right:0.3em;"> <mat-icon style="margin-right: 2px;font-size:1.1rem;margin-bottom: -6px;">view_stream</mat-icon> TV Streams </a>
-        <!-- <a mat-button href="molexee.apk" style="margin-right:0.3em;"> <mat-icon style="margin-right: 2px;font-size:1.1rem;margin-bottom: -6px;">android</mat-icon> Android App </a> -->
+        <a mat-button href="molexee.apk" style="margin-right:0.3em;"> <mat-icon style="margin-right: 2px;font-size:1.1rem;margin-bottom: -6px;">android</mat-icon> Android App </a>
       </div>
 </mat-toolbar-row>
   
@@ -25,7 +25,7 @@
   
         <a mat-list-item [routerLink]="'/home'" (click)="mainTheme();sidenav.toggle()"> <mat-icon style="margin-right:0.5em;">home</mat-icon> Home </a>
         <a mat-list-item [routerLink]="'/video'" (click)="sidenav.toggle()"> <mat-icon style="margin-right:0.5em;">view_stream</mat-icon> TV Streams </a>
-        <!-- <a mat-list-item [routerLink]="'molexee.apk'" (click)="sidenav.toggle()"> <mat-icon style="margin-right:0.5em;">android</mat-icon> Android App </a> -->
+        <a mat-list-item href="molexee.apk" (click)="sidenav.toggle()"> <mat-icon style="margin-right:0.5em;">android</mat-icon> Android App </a>
         <a mat-list-item (click)="sidenav.toggle()" mat-list-item>Close</a>
   
       </mat-nav-list>

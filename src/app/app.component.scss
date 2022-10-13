@@ -9,7 +9,7 @@
 }
 
 #main-container{
-    margin-top:2em;
+    margin-top:2.5em;
     margin-left: 8em;
     margin-right: 8em;
     
@@ -25,8 +25,9 @@
   }
 
   .app-container{
-    min-height: 69vh;
+    max-height: 69vh;
     padding:1.3em;
+    overflow-y: auto;
   }
 
   @media only screen and (max-width: 768px) {

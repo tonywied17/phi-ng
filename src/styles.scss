@@ -182,7 +182,7 @@ $mat-eagles-theme-background: (
 PRIMARY THEMES
 */
 body {
-  --primary-color: #1f2325;
+  --primary-color: #1f2325f5;
   --primary-lighter-color: #bac2c7;
   --primary-darker-color: #0f1f2c;
   --text-primary-color: #{$light-primary-text};
@@ -190,10 +190,10 @@ body {
   --text-primary-darker-color: #{$light-primary-text};
 }   
 $mat-primary: (
-  main: #1f2325,
+  main: #1f2325f5,
   lighter: #bac2c7,
   darker: #0f1f2c,
-  200: #1f2325, // For slide toggle,
+  200: #1f2325f5, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -204,7 +204,7 @@ $theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
 
 //Eagles Primary
 body {
-  --primary-color: #046a38;
+  --primary-color: #046a38ef;
   --primary-lighter-color: #b4d2c3;
   --primary-darker-color: #024d24;
   --text-primary-color: #{$light-primary-text};
@@ -212,10 +212,10 @@ body {
   --text-primary-darker-color: #{$light-primary-text};
 }   
 $mat-primary: (
-  main: #046a38,
+  main: #046a38ef,
   lighter: #b4d2c3,
   darker: #024d24,
-  200: #046a38, // For slide toggle,
+  200: #046a38ef, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -226,7 +226,7 @@ $theme-primary-eagles: mat.define-palette($mat-primary, main, lighter, darker);
 
 //Phillies Primary
 body {
-  --primary-color: #c81e3b;
+  --primary-color: #c81e3bef;
   --primary-lighter-color: #efbcc4;
   --primary-darker-color: #b41226;
   --text-primary-color: #{$light-primary-text};
@@ -234,10 +234,10 @@ body {
   --text-primary-darker-color: #{$light-primary-text};
 }   
 $mat-primary: (
-  main: #c81e3b,
+  main: #c81e3bef,
   lighter: #efbcc4,
   darker: #b41226,
-  200: #c81e3b, // For slide toggle,
+  200: #c81e3bef, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -274,7 +274,7 @@ $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
 
 //Eagles Theme
 body {
-  --accent-color: #046a38;
+  --accent-color: #046a38ef;
   --accent-lighter-color: #b4d2c3;
   --accent-darker-color: #024d24;
   --text-accent-color: #{$light-primary-text};
@@ -282,10 +282,10 @@ body {
   --text-accent-darker-color: #{$light-primary-text};
 }   
 $mat-accent: (
-  main: #046a38,
+  main: #046a38ef,
   lighter: #b4d2c3,
   darker: #024d24,
-  200: #046a38, // For slide toggle,
+  200: #046a38ef, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -378,7 +378,7 @@ $philliesTheme: (
 
 .main{
   @include mat.all-component-themes($theme);
-  --footer-color: #1f2325;
+  --footer-color: #1f2325f5;
   --info-color: rgba(79, 90, 102, 0.808);
   --link-color: #19ff53;
 }
@@ -389,16 +389,16 @@ $philliesTheme: (
 
 .theme-eagles {
   @include mat.all-component-themes($eaglesTheme);
-  --footer-color: #046a38;
+  --footer-color: #046a38ef;
   --info-color: #8A8D8F;
-  --link-color: #046a38;
+  --link-color: #046a38ef;
 
   
 }
 
 .theme-phillies {
   @include mat.all-component-themes($philliesTheme);
-  --footer-color: #c81e3b;
+  --footer-color: #c81e3bef;
   --info-color: #013b73;
   --link-color: #0d569b;
 }
@@ -408,11 +408,13 @@ $philliesTheme: (
 // Handle buttons appropriately, with respect to line-height
 *{
     color-scheme: dark;
+    
 }
 body{
   font-family: 'Roboto';
   background: rgb(14, 14, 14);
   -webkit-tap-highlight-color: transparent;
+  overflow-y: hidden;
 }
 .mat-raised-button, .mat-stroked-button, .mat-flat-button {
   padding: 0 1.15em;
@@ -489,12 +491,12 @@ footer{
 }
 
 ::-webkit-scrollbar-track {
-  background: #4d4c4c;
+  background: var(--footer-color);
   border-radius: 0.8rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #90908f;
+  background: #363636db;
   border-radius: 0.8rem;
 }
 
