@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import videojs from 'video.js';
 
 @Component({
@@ -19,6 +20,10 @@ export class VideoComponent implements AfterViewInit {
   player!: videojs.Player;
   bodyTag = document.body;
   
+  constructor(private _snackBar: MatSnackBar) {}
+
+  
+
   ngAfterViewInit() {
 
   }
@@ -52,6 +57,7 @@ export class VideoComponent implements AfterViewInit {
     this.isStreaming=true;
     this.isEagles=false;
     this.isPhillies=true;
+    
 
     setTimeout(async () => {
       console.log(this.links("phillies"))
@@ -78,7 +84,7 @@ export class VideoComponent implements AfterViewInit {
         this.player.controls(true);
       });
     }, 300)
-
+    this.openSnackBar('Channel changed to phillies', 'Close');
 }
 
  /**
@@ -90,6 +96,7 @@ eagles(){
   this.isStreaming=true;
   this.isEagles=true;
   this.isPhillies=false;
+  
 
   setTimeout(async () => {
     console.log(this.links("eagles"))
@@ -116,14 +123,14 @@ eagles(){
     this.player.controls(true);
   });
   }, 300)
-  
+  this.openSnackBar('Channel changed to eagles', 'Close');
 }
 
 /**
  * 
  */
 redzone(){
-
+  this.openSnackBar('No stream available', 'Close');
 }
 
 
@@ -131,7 +138,7 @@ redzone(){
  * 
  */
 extra(){
-
+  this.openSnackBar('Extra 1 not available', 'Close');
 }
 
 theme(theme: any){
@@ -148,6 +155,12 @@ theme(theme: any){
     this.streamid="none"
     this.player.pause();
     this.isStreaming=true;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000
+    });
   }
 
   /**

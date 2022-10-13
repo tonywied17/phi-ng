@@ -22,8 +22,8 @@
     <mat-sidenav #sidenav mode="push" class="side-nav">
       <mat-nav-list>
   
-        <a mat-list-item [routerLink]="'/home'" (click)="mainTheme()"> <mat-icon style="margin-right:0.5em;">home</mat-icon> Home </a>
-        <a mat-list-item [routerLink]="'/video'"> <mat-icon style="margin-right:0.5em;">live_tv</mat-icon> TV Streams </a>
+        <a mat-list-item [routerLink]="'/home'" (click)="mainTheme();sidenav.toggle()"> <mat-icon style="margin-right:0.5em;">home</mat-icon> Home </a>
+        <a mat-list-item [routerLink]="'/video'" (click)="sidenav.toggle()"> <mat-icon style="margin-right:0.5em;">live_tv</mat-icon> TV Streams </a>
         <a mat-list-item (click)="sidenav.toggle()" mat-list-item>Close</a>
   
       </mat-nav-list>

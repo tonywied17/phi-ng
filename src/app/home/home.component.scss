@@ -49,6 +49,7 @@
 
   .column {
     padding: 5px;
+    user-select:none;
   }
 
   @media only screen and (max-width: 768px) {

@@ -392,6 +392,8 @@ $philliesTheme: (
   --footer-color: #046a38;
   --info-color: #8A8D8F;
   --link-color: #046a38;
+
+  
 }
 
 .theme-phillies {
@@ -449,6 +451,7 @@ footer{
   opacity:0.8;
   font-size:0.9rem;
   text-align: right;
+  user-select: none;
 }
 
 
@@ -464,6 +467,7 @@ footer{
   color: var(--link-color);
   border-bottom: dotted var(--link-color) 1px;
   transition: all .2s ease;
+  user-select: none;
 }
 
 .link:hover{
@@ -517,4 +521,26 @@ footer{
   footer{
     display: none;
   }
+}
+
+mat-chip {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  padding-left: 8px !important;
+  padding-right: 15px !important;
+  font-size: 1.1rem !important;
+}
+
+.mat-snack-bar-container {
+  color: rgb(255 255 255) !important;
+  background: #566878de !important;
+}
+
+.mat-drawer-backdrop {
+  filter: brightness(15%);
+}
+
+
+.mat-tab-label{
+  user-select: none;
 }

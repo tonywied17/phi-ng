@@ -4,8 +4,8 @@
   <mat-button-toggle-group name="currentStream" aria-label="Current Stream" class="chooser">
     <mat-button-toggle value="eagles" (click)="eagles();theme('eagles')">Eagles</mat-button-toggle>
     <mat-button-toggle value="phillies" (click)="phillies();theme('phillies')">Phillies</mat-button-toggle>
-    <mat-button-toggle value="redzone" (click)="redzone();">RedZone</mat-button-toggle>
-    <mat-button-toggle value="extra" (click)="extra();">Extra</mat-button-toggle>
+    <!---<mat-button-toggle value="redzone" (click)="redzone();">RedZone</mat-button-toggle>--->
+    <mat-button-toggle value="extra" (click)="extra();" [disabled]="true">Extra 1</mat-button-toggle>
   </mat-button-toggle-group>
 
 
@@ -13,6 +13,7 @@
     <div class="column">
       <div class="api-container">
         <video *ngIf="isStreaming" [id]="this.streamid" style="width: 100%; height: 100%" class="video-js" controls="controls" controlslist="nodownload"></video>
+        <mat-card *ngIf="!isStreaming" style="border-left: 4px solid rgb(51, 97, 139);"><mat-icon style="font-size:1.2rem;margin-bottom:-8px;">info</mat-icon> Select a channel above to view the stream</mat-card>
       </div>
     </div>
 
