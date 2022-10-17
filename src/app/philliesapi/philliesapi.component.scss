@@ -1,0 +1,41 @@
+
+.message-icon{
+  float: left;
+  width: 25px;
+  text-align: center;
+  padding: 20px 10px;
+}
+.message-text{
+  float: left;
+  width: calc(100% - 65px);
+  margin-left: 1em;
+}
+.row{
+    margin-top: 12px;
+    padding: 0;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @keyframes load-content {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.no-api{
+    animation: load-content 200ms ease 0s 1 normal forwards;
+    border-left: 4px solid #454f59;margin:1em;
+}
+.api-group{
+    animation: load-content 200ms ease 0s 1 normal forwards;
+}

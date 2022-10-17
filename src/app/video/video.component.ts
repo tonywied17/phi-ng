@@ -1,7 +1,9 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import videojs from 'video.js';
+import { Renderer2, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-video',
@@ -9,43 +11,144 @@ import videojs from 'video.js';
   styleUrls: ['./video.component.scss']
 })
 
-export class VideoComponent implements AfterViewInit {
+export class VideoComponent implements OnInit {
+
+  // Main url variable for assigning the selected channel to the active stream
   url: any;
+
+  // Stream urls for the specified channel
+  philliesUrl: any;
+  eaglesUrl: any;
+  extra1Url: any;
+  extra2Url: any
+
+  // Streaming variables used for assign dom id's and displaying <video> element
   streamid: string = "none";
-  isStreaming:boolean =  false;
+  isStreaming: boolean = false;
 
-  isEagles!:boolean;
-  isPhillies!:boolean;
-
-  player!: videojs.Player;
+  // If/which secondary theme is active (Phillies, Eagles), also if an espn api component should be displayed.
   bodyTag = document.body;
-  
-  constructor(private _snackBar: MatSnackBar) {}
+  isEaglesTheme!: boolean;
+  isPhilliesTheme!: boolean;
 
-  
+  // Which channel/stream is currently active
+  isEaglesStream!: boolean;
+  isPhilliesStream!: boolean;
+  isExtra1Stream!: boolean;
+  isExtra2Stream!: boolean;
 
-  ngAfterViewInit() {
+  // video.js
+  player!: videojs.Player;
 
+  // Matsnackbar, and don't remember what renderer2 was for?
+  constructor(
+    private _snackBar: MatSnackBar,
+    private _renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document: Document
+  ) { }
+
+
+  // Initiate the links function to grab which streams are available
+  ngOnInit() {
+    this.links();
   }
 
- /**
-  * 
-  * @param type 
-  */
-  async links(type: String){
+  /**
+   * GET LINKS
+   * Fetch links.json and iterate through the available streams 
+   * and apply the properties as needed. Maniplate DOM using
+   * booleans, string, and binding them to the template.
+   */
+  async links() {
 
     let resp = await fetch('https://molex.cloud/phi/links.json?' + this.rando());
 
-    if(resp.ok){
-      
+    if (resp.ok) {
+
       let json = await resp.json();
 
-      console.log(json)
+      // console.log(json)
+
       json.streams.forEach((element: any) => {
-        if(element.title == type){
-          console.log(element.url)
-          this.url = element.url
+
+        // Assign properties if stream is NOT present
+        if (element.url == "") {
+
+          // console.log("no stream " + element.title + " : " + element.url)
+
+          if (element.title == "phillies") {
+
+            this.philliesUrl = "";
+            this.isPhilliesStream = false;
+            // console.log("Phillies" + element.url + " : " + this.isPhilliesStream)
+
+          }
+
+          if (element.title == "eagles") {
+
+            this.eaglesUrl = "";
+            this.isEaglesStream = false;
+            // console.log("Eagles" + element.url + " : " + this.isEaglesStream)
+
+          }
+
+          if (element.title == "extra1") {
+
+            this.extra1Url = "";
+            this.isExtra1Stream = false;
+            // console.log("Extra 1" + element.url + " : " + this.isExtra1Stream)
+
+          }
+
+          if (element.title == "extra2") {
+
+            this.extra2Url = "";
+            this.isExtra2Stream = false;
+            // console.log("Extra 2" + element.url + " : " + this.isExtra2Stream)
+
+          }
+
+        // Assign properties if stream is present
+        } else {
+
+          // console.log("has stream " + element.title + " : " + element.url)
+
+          if (element.title == "phillies") {
+
+            this.philliesUrl = element.url;
+            this.isPhilliesStream = true;
+            // console.log("phillies" + element.url + " : " + this.isPhilliesStream)
+
+          }
+
+          if (element.title == "eagles") {
+
+            this.eaglesUrl = element.url;
+            this.isEaglesStream = true;
+            // console.log("Eagles" + element.url + " : " + this.isEaglesStream)
+
+          }
+
+          if (element.title == "extra1") {
+
+            this.extra1Url = element.url;
+            this.isExtra1Stream = true;
+            // console.log("extra1" + element.url + " : " + this.isExtra1Stream)
+
+          }
+
+          if (element.title == "extra2") {
+
+            this.extra2Url = element.url;
+            this.isExtra2Stream = true;
+            // console.log("extra2" + element.url + " : " + this.isExtra2Stream)
+
+          }
+
         }
+
+
+
       });
 
     }
@@ -53,33 +156,51 @@ export class VideoComponent implements AfterViewInit {
 
 
   /**
+   * STREAM SELECTOR
+   * Responsible for changing the channel/stream to the appropiate selection
+   * and apply the needed variables/properties for the needed videojs object.
    * 
-   * @param stream 
+   * @param stream - Which channel/stream
    */
-  streamSelector(stream: any){
+  streamSelector(stream: any) {
 
-    if(stream == "phillies"){
-      this.isEagles=false;
-      this.isPhillies=true;
-    }
-    
-    if(stream == "eagles"){
 
-      this.isEagles=true;
-      this.isPhillies=false;
+    if (stream == "phillies") {
+
+      this.isEaglesTheme = false;
+      this.isPhilliesTheme = true;
+      this.url = this.philliesUrl;
 
     }
 
-    if(stream == "extra1"){
+    if (stream == "eagles") {
 
-      this.isEagles=false;
-      this.isPhillies=false;
+      this.isEaglesTheme = true;
+      this.isPhilliesTheme = false;
+      this.url = this.eaglesUrl
 
     }
 
-    this.streamid=stream + this.rando();
-    this.isStreaming=true;
-    this.links(stream)
+    if (stream == "extra1") {
+
+      this.isEaglesTheme = false;
+      this.isPhilliesTheme = false;
+      this.url = this.extra1Url;
+
+    }
+
+    if (stream == "extra2") {
+
+      this.isEaglesTheme = false;
+      this.isPhilliesTheme = false;
+      this.url = this.extra2Url;
+
+    }
+
+
+    this.streamid = stream + this.rando();
+    this.isStreaming = true;
+
 
     setTimeout(async () => {
 
@@ -94,38 +215,47 @@ export class VideoComponent implements AfterViewInit {
           }
         }
       });
-  
+
       this.player.src({
         src: this.url,
         type: 'application/x-mpegURL'
       });
-  
+
       this.player.on('play', () => {
         this.player.controls(true);
       });
     }, 300)
     setTimeout(() => {
-      this.openSnackBar('Channel changed to phillies', 'Close');
+      this.openSnackBar('Channel changed to ' + this.streamid, 'Close');
     }, 300)
   }
 
 
-theme(theme: any){
-  if(theme){
-    this.bodyTag.classList.remove(this.bodyTag.classList.toString())
-    this.bodyTag.classList.add("theme-" + theme);
-  }else{
-    this.bodyTag.classList.remove(this.bodyTag.classList.toString())
-    this.bodyTag.classList.add("main");
+  /**
+   * THEME SELECTOR
+   * This function is used to toggle secondary themes if a supported
+   * channel/stream was selected such as phillies or eagles. Combines
+   * the event object and concats it "theme-<theme: any>" and then
+   * applies that to the body tag class name.
+   * 
+   * @param theme - The name of the request theme
+   */
+  theme(theme: any) {
+    if (theme) {
+      this.bodyTag.classList.remove(this.bodyTag.classList.toString())
+      this.bodyTag.classList.add("theme-" + theme);
+    } else {
+      this.bodyTag.classList.remove(this.bodyTag.classList.toString())
+      this.bodyTag.classList.add("main");
+    }
   }
-}
 
-  stop(){
-    this.streamid="none"
-    this.player.pause();
-    this.isStreaming=true;
-  }
 
+  /**
+   * OPEN SNACKBAR/INFO MESSAGE
+   * @param message 
+   * @param action 
+   */
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 5000
@@ -138,9 +268,44 @@ theme(theme: any){
    * 
    * @returns a random 5 digit number
    */
-  rando(){
+  rando() {
     return Math.floor(Math.random() * 100000);
   }
 
-  
+
+  /**
+   * TAB SELECTION EVENT
+   * If a tab index changes which is used to represent a channel/stream it will
+   * then toggle to that stream and call the streamSelector as well as apply the
+   * channels theme if one is available.
+   * 
+   * @param $event 
+   */
+  tab($event: { index: string | number; }) {
+
+    if ($event.index == 1) {
+      this.streamSelector('phillies');
+      this.theme('phillies')
+    }
+
+    if ($event.index == 2) {
+      this.streamSelector('eagles');
+      this.theme('eagles')
+    }
+
+
+    if ($event.index == 3) {
+      this.streamSelector('extra1');
+      this.theme('')
+    }
+
+    if ($event.index == 4) {
+      this.streamSelector('extra2');
+      this.theme('')
+    }
+
+
+  }
+
+
 }

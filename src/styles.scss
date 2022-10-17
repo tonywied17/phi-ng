@@ -356,6 +356,9 @@ $philliesTheme: (primary: $theme-primary-phillies,
   --footer-color: #1f2325f5;
   --info-color: rgba(79, 90, 102, 0.808);
   --link-color: #19ff53;
+  .mat-badge-content{
+    background-color: #4a555f !important;
+  }
 }
 
 .theme-alternate {
@@ -367,7 +370,9 @@ $philliesTheme: (primary: $theme-primary-phillies,
   --footer-color: #046a38ef;
   --info-color: #8A8D8F;
   --link-color: #046a38ef;
-
+  .mat-badge-content{
+    background-color: #8A8D8F !important;
+  }
 
 }
 
@@ -466,23 +471,7 @@ footer {
   color: gray;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
 
-::-webkit-scrollbar-track {
-  background: var(--footer-color);
-  border-radius: 0.8rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #363636db;
-  border-radius: 0.8rem;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #717171;
-}
 
 
 @media only screen and (max-width: 768px) {
@@ -493,6 +482,7 @@ footer {
 
   body {
     margin: 0;
+    overflow-x: hidden;
   }
 
   .nav {
@@ -506,6 +496,10 @@ footer {
   footer {
     display: none;
   }
+  ::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb:hover {
+    width: 0px;
+    background: transparent !important; /* make scrollbar transparent */
+    }
 }
 
 mat-chip {
@@ -528,4 +522,32 @@ mat-chip {
 
 .mat-tab-label {
   user-select: none;
+}
+
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--footer-color);
+    border-radius: 0.8rem;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #363636db;
+    border-radius: 0.8rem;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #566878de;
+  }
+
+
+.mat-tab-labels > .mat-tab-label:first-child {
+  display: none !important;
+}
+
+.mat-tab-nav-bar, .mat-tab-header {
+  border-bottom: 2px #303030c4 solid !important;
 }

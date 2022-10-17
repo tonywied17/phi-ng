@@ -29,12 +29,15 @@
   max-height: 69vh;
   padding: 1.3em;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   .app-container {
     min-height: calc(100vh - 105px);
     padding: unset !important;
+    margin-right: unset !important;
+    margin:0 !important;
   }
   .child {
     width: 90% !important;

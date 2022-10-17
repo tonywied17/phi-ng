@@ -9,11 +9,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
 
-
+  // Retrieve the current password on intialization
   ngOnInit(): void {
     this.getCreds()
   }
 
+  //An assortment of variables for this component
   bodyTag = document.body;
   input: any;
   title = 'molexee';
@@ -21,8 +22,10 @@ export class AppComponent implements OnInit {
   hide = true;
   pass: any;
 
-  // 
-
+  /**
+   * MAIN THEME TOGGLE
+   * Used to apply the main theme from the app componenent
+  */
   mainTheme() {
     this.bodyTag.classList.remove(this.bodyTag.classList.toString())
     this.bodyTag.classList.add("main");
@@ -32,6 +35,14 @@ export class AppComponent implements OnInit {
     password: new FormControl('')
   })  
 
+  /**
+   * AUTHORIZATION LISTENER
+   * While a user is typing the auth password listen for each
+   * typed character and once it matches store the auth verification
+   * in the users local storage.
+   * 
+   * @param e - the current value of the password textbox
+   */
   async getAuth(e: any){
 
     e.preventDefault()
@@ -45,6 +56,12 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+   * GET AUTHORIZATION
+   * Fetch the current password from by fetching the streamAuth.json
+   * file and if the password in users localStorage matches then grant
+   * access to the application.
+   */
   async getCreds(){
 
     let storedCreds = localStorage.getItem('auth') ? localStorage.getItem('auth') : null;
@@ -63,6 +80,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+   * RANDOM NUMBER
+   * @returns a random number
+   */
   rando(){
     return Math.floor(Math.random() * 100000);
   }

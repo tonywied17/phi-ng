@@ -1,11 +1,19 @@
 
-<mat-card style="border-left: 4px solid #454f59;margin:1em;" *ngIf="!philsApi">
-  <mat-icon style="font-size:1.2rem;margin-bottom:-8px;">info</mat-icon> There are no events scheduled for today<p>Next scheduled event is for {{phillies.team.nextEvent[0].competitions[0].status.type.detail}}</p>
+<mat-card class="no-api" *ngIf="!philsApi">
+  <div class="row">
+  <div class="message-icon">
+    <mat-icon style="font-size:1.2rem;margin-bottom:-8px;">info</mat-icon>
+  </div>
+  <div class="message-text">
+    There are no events scheduled for today
+    <p>Next scheduled event is for {{phillies.team.nextEvent[0].competitions[0].status.type.detail}}</p>
+  </div>
+</div>
 </mat-card>
 
 
-<mat-tab-group *ngIf="philsApi">
-
+<mat-tab-group *ngIf="philsApi" class="api-group" [selectedIndex]="1">
+  <mat-tab></mat-tab>
     <mat-tab label="Team Stats"> 
         <mat-list>
           <mat-list-item>{{phillies.competitions[0].series.summary}}</mat-list-item>

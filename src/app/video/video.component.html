@@ -1,26 +1,89 @@
 <div style="margin:auto;">
 
-  
+<!--   
   <mat-button-toggle-group name="currentStream" aria-label="Current Stream" class="chooser">
-    <mat-button-toggle value="eagles" (click)="streamSelector('eagles');theme('eagles')">Eagles</mat-button-toggle>
+    <mat-button-toggle value="eagles" (click)="streamSelector('eagles');theme('eagles')">
+      Eagles
+    </mat-button-toggle>
     <mat-button-toggle value="phillies" (click)="streamSelector('phillies');theme('phillies')">Phillies</mat-button-toggle>
-    <!---<mat-button-toggle value="redzone" (click)="redzone();">RedZone</mat-button-toggle>--->
-    <mat-button-toggle value="extra" [disabled]="true">Extra 1</mat-button-toggle>
+    <mat-button-toggle value="redzone" (click)="redzone();">RedZone</mat-button-toggle>
+    <mat-button-toggle value="extra" (click)="streamSelector('extra1');theme('')">Extra 1</mat-button-toggle>
   </mat-button-toggle-group>
+ -->
 
 
+  <mat-tab-group (selectedTabChange)="tab($event)" [selectedIndex]="0" class="tabGroup">
+    <mat-tab></mat-tab>
+
+    <mat-tab [disabled]="!isPhilliesStream">
+
+      <ng-template mat-tab-label *ngIf="isPhilliesStream">
+        <div class="blob green"></div>
+        <img style="width:auto; height:25px;margin-right:0.5em;margin-bottom:5px;" src="https://molex.cloud/2022/October/15/_fYS/phils.png">
+        <span style="margin-left:8px;">Phillies</span>
+      </ng-template>
+
+    <ng-template mat-tab-label *ngIf="!isPhilliesStream">
+      <div class="blob red"></div>
+      <img style="width:auto; height:25px;margin-right:0.5em;margin-bottom:5px;" src="https://molex.cloud/2022/October/15/_fYS/phils.png">
+      <span style="margin-left:8px;">Phillies</span>
+    </ng-template>
+
+    </mat-tab>
+
+    <mat-tab [disabled]="!isEaglesStream">
+        <ng-template mat-tab-label *ngIf="isEaglesStream">
+          <div class="blob green"></div>
+          <img style="width:auto; height:25px;margin-left:0.5em;margin-bottom:5px;" src="https://molex.cloud/2022/October/15/_3nT/birds.png">
+          <span style="margin-left:8px;">Eagles</span>
+        </ng-template>
+
+        <ng-template mat-tab-label *ngIf="!isEaglesStream">
+          <div class="blob red"></div>
+          <img style="width:auto; height:25px;margin-left:0.5em;margin-bottom:5px;" src="https://molex.cloud/2022/October/15/_3nT/birds.png">
+          <span style="margin-left:8px;">Eagles</span>
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab [disabled]="!isExtra1Stream">
+    <ng-template mat-tab-label *ngIf="isExtra1Stream">
+        <div class="blob green"></div>
+        <span style="margin-left:8px;">Channel 3</span>
+    </ng-template>
+
+    <ng-template mat-tab-label *ngIf="!isExtra1Stream">
+      <div class="blob red"></div>
+      <span style="margin-left:8px;">Channel 3</span>
+    </ng-template>
+    </mat-tab>
+
+    <mat-tab  [disabled]="!isExtra2Stream">
+      <ng-template mat-tab-label *ngIf="isExtra2Stream">
+        <div class="blob green"></div>
+        <span style="margin-left:8px;">Channel 4</span>
+      </ng-template>
+
+    <ng-template mat-tab-label *ngIf="!isExtra2Stream">
+      <div class="blob red"></div>
+      <span style="margin-left:8px;">Channel 4</span>
+  </ng-template>
+  </mat-tab>
+
+</mat-tab-group>
   <div class="row">
     <div class="column">
       <div class="api-container">
         <video *ngIf="isStreaming" [id]="this.streamid" style="width: 100%; height: 100%" class="video-js" controls="controls" controlslist="nodownload"></video>
+       
+       
         <mat-card *ngIf="!isStreaming" style="border-left: 4px solid #454f59;"><mat-icon style="font-size:1.2rem;margin-bottom:-8px;">info</mat-icon> Select a channel above to view the stream</mat-card>
       </div>
     </div>
 
     <div class="column">
       <div class="api-container">
-        <app-eaglesapi *ngIf="isEagles"></app-eaglesapi> 
-        <app-philliesapi *ngIf="isPhillies"></app-philliesapi> 
+        <app-eaglesapi *ngIf="isEaglesTheme"></app-eaglesapi> 
+        <app-philliesapi *ngIf="isPhilliesTheme"></app-philliesapi> 
       </div>
     </div>
 

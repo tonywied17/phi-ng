@@ -5,55 +5,68 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
-  longText = `Public-access television is traditionally a form of non-commercial mass media where the general public can create content television programming which is narrowcast through cable television specialty channels. Public-access television was created in the United States between 1969 and 1971 by the Federal Communications Commission (FCC), under Chairman Dean Burch, based on pioneering work and advocacy of George Stoney, Red Burns (Alternate Media Center),[1] and Sidney Dean (City Club of NY).`;
-  
+
+  // Variables used to ESPN json data
   mlbNewsApi: any;
   mlbNews: any;
   nflNewsApi: any;
   nflNews: any;
 
+  // All json objects merged into one news feed
   allNews: any;
 
   constructor() { }
 
+  // Merge espn api calls on component initialization
   ngOnInit(): void {
-    
+
     this.combineNews()
-    
+
   }
 
 
-   randomize(a: any, b: any) {
-    return Math.random() - 0.5;
-  }
-
-
-  async getMlbNewsApi(){
+  /**
+   * GET MLB NEWS
+   * Calls the espn mlb news api and returns the JSON
+   */
+  async getMlbNewsApi() {
     let resp = await fetch('https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/news');
 
-    if(resp.ok){
+    if (resp.ok) {
       this.mlbNewsApi = await resp.json();
     }
 
     this.mlbNews = this.mlbNewsApi;
-    
+
 
   }
 
-  async getNflNewsApi(){
+
+  /**
+   * GET NFL NEWS
+   * Calls the espn nfl news api and returns the JSON
+   */
+  async getNflNewsApi() {
     let resp = await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/news');
 
-    if(resp.ok){
+    if (resp.ok) {
       this.nflNewsApi = await resp.json();
     }
 
     this.nflNews = this.nflNewsApi;
-    
+
   }
 
 
-  async combineNews(){
+  /**
+   * COMBINE NEWS
+   * Call mlb and nfl api functions to grab the json objects and
+   * then combine those two objects and shuffle them up randomly
+   * into a new allNews object
+   */
+  async combineNews() {
 
     await this.getMlbNewsApi()
     await this.getNflNewsApi()
@@ -74,9 +87,23 @@ export class HomeComponent implements OnInit {
  * OPEN ESPN TEAM LINKS IN NEW POPUP
  * @param url 
  */
-   open(url: any, title: any, w: any, h: any){
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
-    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+  open(url: any, title: any, w: any, h: any) {
+    var left = (screen.width / 2) - (w / 2);
+    var top = (screen.height / 2) - (h / 2);
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+  }
+
+  
+  /**
+   * GENERATE A RANDOM NUMBER
+   * Does what it sounds like, it just returns a random number.
+   * @param a 
+   * @param b 
+   * @returns 
+   */
+  randomize(a: any, b: any) {
+    return Math.random() - 0.5;
   }
 }
+
+
