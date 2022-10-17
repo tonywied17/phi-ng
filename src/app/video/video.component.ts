@@ -61,7 +61,7 @@ export class VideoComponent implements OnInit {
    */
   async links() {
 
-    let resp = await fetch('https://molex.cloud/phi/links.json?' + this.rando());
+    let resp = await fetch('links.json?' + this.rando());
 
     if (resp.ok) {
 

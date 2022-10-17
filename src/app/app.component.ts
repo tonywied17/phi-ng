@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
   async getCreds(){
 
     let storedCreds = localStorage.getItem('auth') ? localStorage.getItem('auth') : null;
-    let resp = await fetch('https://molex.cloud/phi/streamAuth.json?' + this.rando());
+    let resp = await fetch('streamAuth.json?' + this.rando());
 
     if(resp.ok){
       let json = await resp.json();
